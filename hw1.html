@@ -17,6 +17,35 @@
 
 	<!-- api -->
 	<script type="text/javascript">
+
+		$(document).ready(function(){
+			$.ajax({
+				type: "GET",
+				url: "http://spartacodingclub.shop/order",
+				data: {},
+				success: function(response){
+					for (let j = 0; j < response['orders'].length; j++) { 
+						let name = response['orders'][j]['name'];
+						let address = response['orders'][j]['address'];
+						let phone = response['orders'][j]['phone'];
+						let quanity = response['orders'][j]['count'];
+
+						let temp_html = '<tr>\
+											<th scope="row">'+name+'</th>\
+											<td>'+quanity+'</td>\
+											<td>'+address+'</td>\
+											<td>'+phone+'</td>\
+										</tr>'
+						$("#order-history-information").append(temp_html);
+					}
+				}
+			});
+			$("#order-click-btn").click(function(){
+				alert("주문해 주셔서 감사합니다!");
+			});
+		});
+
+
 		function orderBtn(){
 
 			let customerName = $("#customer-name").val();
@@ -45,46 +74,21 @@
 				$("#customer-phonenumber").css("border", "1px solid #ced4da");
 			}
 
-			if(itemQuanity === "---수량을 선택하세요---"){
+			if(itemQuanity == "---수량을 선택하세요---"){
 				alert("수량을 선택해주세요!");
 				$("#item-quanity").css("border", "1px solid #ff0000");
 			} else{
 				$("#customer-quanity").css("border", "1px solid #ced4da");
 			}
 
-			$.ajax({
-				type: "GET",
-				url: "http://spartacodingclub.shop/order",
-				data: {},
-				success: function(response){
-
-					// console.log(response);
-					for (let j = 0; j < response['orders'].length; j++) { 
-						let name = response['orders'][j]['name'];
-						let address = response['orders'][j]['address'];
-						let phone = response['orders'][j]['phone'];
-						let quanity = response['orders'][j]['count'];
-
-						let temp_html = '<tr>\
-							<th scope="row">'+name+'</th>\
-							<td>'+quanity+'</td>\
-							<td>'+address+'</td>\
-							<td>'+phone+'</td>\
-						</tr>'
-						$("#order-history-information").append(temp_html);
-					}
-					alert("주문해 주셔서 감사합니다!")
-				}
-			})
+			
 		}
 	</script>
 </head>
 <body>
 	<div class="wrap">
 		<div class="product-image-wrap">
-			<div class="product-image">
-				
-			</div> <!-- class="product_image" -->
+			<div class="product-image"></div>
 		</div> <!-- class="product-image-wrap" -->
 		<div class="product-info">
 			<div class="product-name">
@@ -131,17 +135,6 @@
 								<option>5</option>
 							</select>
 						</div>
-						<!-- <div class="btn-group">
-							<button id="item-quanity" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								---수량을 선택하세요---
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">1</a>
-								<a class="dropdown-item" href="#">2</a>
-								<a class="dropdown-item" href="#">3</a>
-								<a class="dropdown-item" href="#">4</a>
-							</div>
-						</div> -->
 					</div>
 				</div>
 				<div class="client-address">
@@ -167,7 +160,7 @@
 			</div>
 		</div> <!-- class="product_order" -->
 		<div class="order-now">
-			<button onclick="orderBtn()" type="button" class="btn btn-primary order-click">주문하기</button>
+			<button id="order-click-btn" onclick="orderBtn()" type="button" class="btn btn-primary order-click">주문하기</button>
 		</div> <!-- class="order-now" order button -->
 		<div class="order-history-wrap">
 			<div class="order-history">
@@ -180,14 +173,7 @@
 							<th scope="col">전화번호</th>
 						</tr>
 					</thead>
-					<tbody id="order-history-information">
-						<!-- <tr>
-							<th scope="row">1</th>
-							<td>Mark</td>
-							<td>Otto</td>
-							<td>@mdo</td>
-						</tr> -->
-					</tbody>
+					<tbody id="order-history-information"></tbody>
 				</table>
 			</div>
 		</div> <!-- class="order-history-wrap" -->
