@@ -40,9 +40,9 @@
 					}
 				}
 			});
-			$("#order-click-btn").click(function(){
-				alert("주문해 주셔서 감사합니다!");
-			});
+			// $("#order-click-btn").click(function(){
+			// 	alert("주문해 주셔서 감사합니다!");
+			// });
 		});
 
 
@@ -55,33 +55,19 @@
 
 			if(customerName == ""){
 				alert("필수 정보를 입력해주세요!");
-				$("#customer-name").css("border", "1px solid #ff0000");
-			} else{
-				$("#customer-name").css("border", "1px solid #ced4da");
-			}
-
-			if(customerAddress == ""){
+				$("#customer-name").focus();
+			} else if(customerAddress == ""){
 				alert("필수 정보를 입력해주세요!");
-				$("#customer-address").css("border", "1px solid #ff0000");
-			} else{
-				$("#customer-address").css("border", "1px solid #ced4da");
-			}
-
-			if(customerPhoneNumber == ""){
+				$("#customer-address").focus();
+			} else if(customerPhoneNumber == ""){
 				alert("필수 정보를 입력해주세요!");
-				$("#customer-phonenumber").css("border", "1px solid #ff0000");
-			} else{
-				$("#customer-phonenumber").css("border", "1px solid #ced4da");
-			}
-
-			if(itemQuanity == "---수량을 선택하세요---"){
+				$("#customer-phonenumber").focus();
+			} else if(itemQuanity == "---수량을 선택하세요---"){
 				alert("수량을 선택해주세요!");
-				$("#item-quanity").css("border", "1px solid #ff0000");
-			} else{
-				$("#customer-quanity").css("border", "1px solid #ced4da");
+				$("#item-quanity").focus();
+			} else {
+				alert("주문해 주셔서 감사합니다!");
 			}
-
-			
 		}
 	</script>
 </head>
