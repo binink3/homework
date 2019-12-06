@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>기획서(레이아웃)</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="hw1.css">
+
+	<!-- JS -->		
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- api -->
+	<script type="text/javascript">
+		function orderBtn(){
+
+			let customerName = $("#customer-name").val();
+			let itemQuanity = $("#item-quanity").val();
+			let customerAddress = $("#customer-address").val();
+			let customerPhoneNumber = $("#customer-phonenumber").val();
+
+			if(customerName == ""){
+				alert("필수 정보를 입력해주세요!");
+				$("#customer-name").css("border", "1px solid #ff0000");
+			} else{
+				$("#customer-name").css("border", "1px solid #ced4da");
+			}
+
+			if(customerAddress == ""){
+				alert("필수 정보를 입력해주세요!");
+				$("#customer-address").css("border", "1px solid #ff0000");
+			} else{
+				$("#customer-address").css("border", "1px solid #ced4da");
+			}
+
+			if(customerPhoneNumber == ""){
+				alert("필수 정보를 입력해주세요!");
+				$("#customer-phonenumber").css("border", "1px solid #ff0000");
+			} else{
+				$("#customer-phonenumber").css("border", "1px solid #ced4da");
+			}
+
+			if(itemQuanity === "---수량을 선택하세요---"){
+				alert("수량을 선택해주세요!");
+				$("#item-quanity").css("border", "1px solid #ff0000");
+			} else{
+				$("#customer-quanity").css("border", "1px solid #ced4da");
+			}
+
+			$.ajax({
+				type: "GET",
+				url: "http://spartacodingclub.shop/order",
+				data: {},
+				success: function(response){
+
+					// console.log(response);
+					for (let j = 0; j < response['orders'].length; j++) { 
+						let name = response['orders'][j]['name'];
+						let address = response['orders'][j]['address'];
+						let phone = response['orders'][j]['phone'];
+						let quanity = response['orders'][j]['count'];
+
+						let temp_html = '<tr>\
+							<th scope="row">'+name+'</th>\
+							<td>'+quanity+'</td>\
+							<td>'+address+'</td>\
+							<td>'+phone+'</td>\
+						</tr>'
+						$("#order-history-information").append(temp_html);
+					}
+					alert("주문해 주셔서 감사합니다!")
+				}
+			})
+		}
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="product-image-wrap">
+			<div class="product-image">
+				
+			</div> <!-- class="product_image" -->
+		</div> <!-- class="product-image-wrap" -->
+		<div class="product-info">
+			<div class="product-name">
+				<h2>시애틀 여행 상품권</h2>
+			</div>
+			<div class="prodcut-price">
+				<span>가격 : 1,000,000원 / 개</span>
+			</div>
+		</div> <!-- class="product_info" -->
+		<div class="product-detail">
+			<p>
+				Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+			</p>
+		</div> <!-- class="product-detail" -->
+		<div class="product-order">
+			<div class="product-order-h2">
+				<h2>주문하기</h2>
+			</div>
+			<div class="order-info">
+				<div class="client-name">
+					<div class="left">
+						<span>
+							주문자 성함: 
+						</span>
+					</div>
+					<div class="right">
+						<input id="customer-name" type="text" name="name">
+					</div>
+				</div>
+				<div class="order-quanity">
+					<div class="left">
+						<span>
+							수량:
+						</span>
+					</div>
+					<div class="right">
+						<div class="form-group">
+							<select id="item-quanity" class="form-control" id="exampleFormControlSelect1">
+								<option>---수량을 선택하세요---</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+								<option>5</option>
+							</select>
+						</div>
+						<!-- <div class="btn-group">
+							<button id="item-quanity" class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								---수량을 선택하세요---
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">1</a>
+								<a class="dropdown-item" href="#">2</a>
+								<a class="dropdown-item" href="#">3</a>
+								<a class="dropdown-item" href="#">4</a>
+							</div>
+						</div> -->
+					</div>
+				</div>
+				<div class="client-address">
+					<div class="left">
+						<span>
+							주소:
+						</span>
+					</div>
+					<div class="right">
+						<input id="customer-address" type="text" name="address">
+					</div>
+				</div>
+				<div class="client-phonenumber">
+					<div class="left">
+						<span>
+							전화번호: 
+						</span>
+					</div>
+					<div class="right">
+						<input id="customer-phonenumber" type="text" name="phonenumber">
+					</div>
+				</div>
+			</div>
+		</div> <!-- class="product_order" -->
+		<div class="order-now">
+			<button onclick="orderBtn()" type="button" class="btn btn-primary order-click">주문하기</button>
+		</div> <!-- class="order-now" order button -->
+		<div class="order-history-wrap">
+			<div class="order-history">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">이름</th>
+							<th scope="col">수량</th>
+							<th scope="col">주소</th>
+							<th scope="col">전화번호</th>
+						</tr>
+					</thead>
+					<tbody id="order-history-information">
+						<!-- <tr>
+							<th scope="row">1</th>
+							<td>Mark</td>
+							<td>Otto</td>
+							<td>@mdo</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div> <!-- class="order-history-wrap" -->
+	</div>
+</body>
+</html>
