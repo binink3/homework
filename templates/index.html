@@ -8,9 +8,9 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="hw1.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='hw1.css') }}">
 
-	<!-- JS -->		
+	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -24,7 +24,7 @@
 				url: "/order",
 				data: {},
 				success: function(response){
-					for (let j = 0; j < response['orders'].length; j++) { 
+					for (let j = 0; j < response['orders'].length; j++) {
 						let name = response['orders'][j]['name'];
 						let address = response['orders'][j]['address'];
 						let phone = response['orders'][j]['phone'];
@@ -98,7 +98,7 @@
 		</div> <!-- class="product_info" -->
 		<div class="product-detail">
 			<p>
-				Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+				Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
 			</p>
 		</div> <!-- class="product-detail" -->
 		<div class="product-order">
@@ -109,7 +109,7 @@
 				<div class="client-name">
 					<div class="left">
 						<span>
-							주문자 성함: 
+							주문자 성함:
 						</span>
 					</div>
 					<div class="right">
@@ -148,7 +148,7 @@
 				<div class="client-phonenumber">
 					<div class="left">
 						<span>
-							전화번호: 
+							전화번호:
 						</span>
 					</div>
 					<div class="right">
