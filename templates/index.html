@@ -27,8 +27,8 @@
 					for (let j = 0; j < response['orders'].length; j++) {
 						let name = response['orders'][j]['name'];
 						let address = response['orders'][j]['address'];
-						let phone = response['orders'][j]['phone'];
-						let quantity = response['orders'][j]['count'];
+						let phone = response['orders'][j]['phonenumber'];
+						let quantity = response['orders'][j]['quantity'];
 
 						let temp_html = '<tr>\
 						<th scope="row">'+name+'</th>\
